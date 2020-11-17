@@ -1,5 +1,5 @@
 {
-  "name": "git-info",
+  "name": "@angcap/git-info",
   "version": "1.0.0",
   "description": "A blank schematics",
   "scripts": {

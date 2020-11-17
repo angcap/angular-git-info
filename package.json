@@ -1,8 +1,8 @@
 {
   "name": "@angcap/git-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A blank schematics",
-  "scripts": {    
+  "scripts": {
     "schematics": "schematics",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",

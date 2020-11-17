@@ -1,8 +1,9 @@
 {
-  "name": "@w11k/git-info",
-  "version": "1.0.1",
+  "name": "@angcap/git-info",
+  "version": "1.0.0",
   "description": "A blank schematics",
   "scripts": {
+    "postinstall": "node git-version.js",
     "schematics": "schematics",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
@@ -14,7 +15,7 @@
     "schematics",
     "angular"
   ],
-  "author": "Kai Henzler",
+  "author": "Angelo Capone",
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
@@ -26,15 +27,17 @@
   "devDependencies": {
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
+    "fs-extra": "6.0.1",
+    "git-last-commit": "1.0.0",
     "jasmine": "^3.5.0"
   },
   "main": "src/git-info/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/w11k/angular-git-info.git"
+    "url": "git+https://github.com/angcap/angular-git-info.git"
   },
   "bugs": {
-    "url": "https://github.com/w11k/angular-git-info/issues"
+    "url": "https://github.com/angcap/angular-git-info/issues"
   },
-  "homepage": "https://github.com/w11k/angular-git-info#readme"
+  "homepage": "https://github.com/angcap/angular-git-info#readme"
 }

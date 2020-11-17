@@ -40,7 +40,7 @@ function updateDependencies(): Rule {
                     return tree;
                 })
             );
-        const addLatestDependencies = of('git-describe').pipe(
+        const addLatestDependencies = of('git-last-commit').pipe(
             concatMap((packageName: string) => getLatestNodeVersion(packageName)),
             map((packageFromRegistry: NodePackage) => {
                 const {name, version} = packageFromRegistry;

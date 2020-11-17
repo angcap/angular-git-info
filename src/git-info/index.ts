@@ -25,10 +25,10 @@ function updateDependencies(): Rule {
         context.logger.debug('Updating dependencies...');
         context.addTask(new NodePackageInstallTask());
 
-        const fixedDependencies = of({name: 'fs-extra', version: '6.0.1'})
+        const fixedDependencies = of({ name: 'fs-extra', version: '6.0.1' })
             .pipe(
                 map((packageFromRegistry: NodePackage) => {
-                    const {name, version} = packageFromRegistry;
+                    const { name, version } = packageFromRegistry;
                     context.logger.debug(`Adding ${name}:${version} to ${NodeDependencyType.Dev}`);
 
                     addPackageJsonDependency(tree, {
@@ -40,21 +40,21 @@ function updateDependencies(): Rule {
                     return tree;
                 })
             );
-        const addLatestDependencies = of('git-last-commit').pipe(
-            concatMap((packageName: string) => getLatestNodeVersion(packageName)),
-            map((packageFromRegistry: NodePackage) => {
-                const {name, version} = packageFromRegistry;
-                context.logger.debug(`Adding ${name}:${version} to ${NodeDependencyType.Dev}`);
+        const addLatestDependencies = of({ name: 'git-last-commit', version: '1.0.0' })
+            .pipe(                
+                map((packageFromRegistry: NodePackage) => {
+                    const { name, version } = packageFromRegistry;
+                    context.logger.debug(`Adding ${name}:${version} to ${NodeDependencyType.Dev}`);
 
-                addPackageJsonDependency(tree, {
-                    type: NodeDependencyType.Dev,
-                    name,
-                    version,
-                });
+                    addPackageJsonDependency(tree, {
+                        type: NodeDependencyType.Dev,
+                        name,
+                        version,
+                    });
 
-                return tree;
-            })
-        );
+                    return tree;
+                })
+            );
 
         return concat(addLatestDependencies, fixedDependencies);
     };

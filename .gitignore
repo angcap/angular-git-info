@@ -20,3 +20,5 @@ yarn-error.log*
 
 git-version.js
 src/environments/
+
+src/environments/version.ts

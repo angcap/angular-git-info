@@ -8,11 +8,11 @@ getLastCommit((err, gitInfo) => {
     gitInfo.version = version;
     gitInfo.authoredOn = new Date(parseInt(gitInfo.authoredOn) * 1000);
     gitInfo.committedOn = new Date(parseInt(gitInfo.committedOn) * 1000);
-
-    if (!existsSync(__dirname + '/src/environments')) {
-        mkdirSync(__dirname + '/src/environments');
+    const rootDir = __dirname === '/' ? '' : __dirname;
+    if (!existsSync(rootDir + '/src/environments')) {
+        mkdirSync(rootDir + '/src/environments');
     }
-    const file = resolve(__dirname, 'src', 'environments', 'version.ts');
+    const file = resolve(rootDir, 'src', 'environments', 'version.ts');
     writeFileSync(file,
         `// IMPORTANT: THIS FILE IS AUTO GENERATED! DO NOT MANUALLY EDIT OR CHECKIN!
 /* tslint:disable */
@@ -20,5 +20,5 @@ export const VERSION = ${JSON.stringify(gitInfo, null, 4)};
 /* tslint:enable */
 `, { encoding: 'utf-8' });
 
-    console.log(`Wrote version info ${JSON.stringify(gitInfo, null, 4)} to ${relative(resolve(__dirname, '..'), file)}`);
+    console.log(`Wrote version info ${JSON.stringify(gitInfo, null, 4)} to ${relative(resolve(rootDir, '..'), file)}`);
 });
